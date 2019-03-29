@@ -1,0 +1,12 @@
+# alertmanager.yml
+# https://prometheus.io/docs/alerting/configuration/
+global:
+  resolve_timeout: 10s
+  slack_api_url: 'https://hooks.slack.com/services/create/your/own-key'
+route:
+  receiver: 'slack'
+receivers:
+    - name: 'slack'
+      slack_configs:
+          - send_resolved: true
+          - text: "PBU-Monitoring Nachricht: {{ .CommonAnnotations.description }}\nsummary: {{ .CommonAnnotations.summary }}"
